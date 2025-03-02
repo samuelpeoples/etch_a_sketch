@@ -3,11 +3,12 @@
 createGrid(16, 16);
 const grid = document.querySelectorAll("#square");
 const rows = document.querySelectorAll("#sketchRow");
-
+randomizeColor();
 const resetButton = document.querySelector("#reset");
 
 resetButton.addEventListener("click", () => {
-    refreshGrid();
+	refreshGrid();
+	randomColour();
 });
 
 //REGULAR MODE
@@ -23,14 +24,10 @@ resetButton.addEventListener("click", () => {
 //SHADE MODE
 grid.forEach((square) => {
 	square.addEventListener("mouseenter", () => {
-		//square.setAttribute("style", "background-color: black;");
-        let currentOpacity = getComputedStyle(square).getPropertyValue("opacity");
-        currentOpacity -= 0.1;
-        square.setAttribute("style", `opacity: ${currentOpacity};`);
-	});
-	square.addEventListener("mouseleave", () => {
-        //square.setAttribute("style", "background-color: grey;");
-        
+		let currentOpacity =
+			getComputedStyle(square).getPropertyValue("opacity");
+		currentOpacity -= 0.1;
+		square.style.opacity = currentOpacity;
 	});
 });
 
@@ -44,12 +41,12 @@ function createGrid(gridHeight, gridWidth) {
 	for (let i = 0; i < gridHeight; i++) {
 		const sketchRow = document.createElement("div");
 		sketchRow.classList.add("sketchRow");
-        sketchRow.id = "sketchRow";
+		sketchRow.id = "sketchRow";
 		const sketchColumn = document.createElement("div");
 		sketchColumn.classList.add("sketchColumn");
 		sketchContainer.appendChild(sketchRow);
 		sketchRow.appendChild(sketchColumn);
-        
+
 		for (let j = 0; j < gridWidth; j++) {
 			const sketchSquare = document.createElement("div");
 			sketchSquare.classList.add("sketchSquare");
@@ -59,16 +56,27 @@ function createGrid(gridHeight, gridWidth) {
 	}
 }
 
-function refreshGrid() {
-    let gridHeight = prompt("How High do you want this grid?");
-    while (gridHeight > 100){
-        gridHeight = prompt("How High do you want this grid?");
-    }
-    let gridWidth = prompt("How Wide do you want this grid?");
-    while (gridWidth > 100 && typeof gridWidth !== Number){
-        gridWidth = prompt("How Wide do you want this grid?");
-    }
+function randomizeColor() {
+	grid.forEach((square) => {
+		var letters = "0123456789ABCDEF";
+		var color = "#";
+		for (var i = 0; i < 6; i++) {
+			color += letters[Math.floor(Math.random() * 16)];
+		}
+		square.style.backgroundColor = color;
+	});
+}
 
-    sketchContainer.replaceChildren();
-    createGrid(gridHeight, gridWidth);
+function refreshGrid() {
+	let gridHeight = prompt("How High do you want this grid?");
+	while (gridHeight > 100) {
+		gridHeight = prompt("How High do you want this grid?");
+	}
+	let gridWidth = prompt("How Wide do you want this grid?");
+	while (gridWidth > 100 && typeof gridWidth !== Number) {
+		gridWidth = prompt("How Wide do you want this grid?");
+	}
+
+	sketchContainer.replaceChildren();
+	createGrid(gridHeight, gridWidth);
 }
