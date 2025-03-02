@@ -1,9 +1,17 @@
+html body{
+    box-sizing: border-box;
+}
 #sketchContainer{
     display: flexbox;
-    border: 2px solid black;
+    border: .2em solid black;
     flex: auto;
     width: fit-content;
 }
+
+.button{
+    margin: 1em 0em;
+}
+
 .sketchRow{
     width: fit-content;
 }
@@ -12,6 +20,6 @@
     flex-direction: row;
 }
 .sketchSquare{
-    padding: 10px;
-    border: 1px dotted black;
+    padding: .7em;
+    border: .1em dotted black;
 }
