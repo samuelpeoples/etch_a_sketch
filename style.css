@@ -1,0 +1,17 @@
+#sketchContainer{
+    display: flexbox;
+    border: 2px solid black;
+    flex: auto;
+    width: fit-content;
+}
+.sketchRow{
+    width: fit-content;
+}
+.sketchColumn{
+    display: flex;
+    flex-direction: row;
+}
+.sketchSquare{
+    padding: 10px;
+    border: 1px dotted black;
+}
