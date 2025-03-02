@@ -1,35 +1,58 @@
 //PROGRAM
-
+let mode = 0;
 createGrid(16, 16);
-const grid = document.querySelectorAll("#square");
-const rows = document.querySelectorAll("#sketchRow");
-randomizeColor();
+const normalButton = document.querySelector("#normalButton");
+const shadeButton = document.querySelector("#shadeButton");
+const colourButton = document.querySelector("#colourButton");
 const resetButton = document.querySelector("#reset");
 
+normalButton.addEventListener("click", () => {
+	mode = 0;
+	refreshGrid();
+});
+shadeButton.addEventListener("click", () => {
+	mode = 1;
+	refreshGrid();
+});
+colourButton.addEventListener("click", () => {
+	mode = 2;
+	refreshGrid();
+});
 resetButton.addEventListener("click", () => {
 	refreshGrid();
-	randomColour();
 });
 
-//REGULAR MODE
-// grid.forEach((square) => {
-// 	square.addEventListener("mouseenter", () => {
-// 		square.setAttribute("style", "background-color: black;");
-// 	});
-// 	square.addEventListener("mouseleave", () => {
-// 		square.setAttribute("style", "background-color: grey;");
-// 	});
-// });
-
-//SHADE MODE
-grid.forEach((square) => {
-	square.addEventListener("mouseenter", () => {
-		let currentOpacity =
-			getComputedStyle(square).getPropertyValue("opacity");
-		currentOpacity -= 0.1;
-		square.style.opacity = currentOpacity;
-	});
-});
+function setMode(mode) {
+	const grid = document.querySelectorAll("#square");
+	if (mode == 0) {
+		//REGULAR MODE
+		grid.forEach((square) => {
+			square.addEventListener("mouseenter", () => {
+				square.setAttribute("style", "background-color: black;");
+			});
+			square.addEventListener("mouseleave", () => {
+				square.setAttribute("style", "background-color: grey;");
+			});
+		});
+	} else if (mode == 1) {
+		//SHADE MODE
+		grid.forEach((square) => {
+			square.addEventListener("mouseenter", () => {
+				let currentOpacity =
+					getComputedStyle(square).getPropertyValue("opacity");
+				currentOpacity -= 0.1;
+				square.style.opacity = currentOpacity;
+			});
+		});
+	} else {
+		//COLOUR MODE
+		grid.forEach((square) => {
+			square.addEventListener("mouseenter", () => {
+				square.style.backgroundColor = randomizeColor();
+			});
+		});
+	}
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -54,17 +77,16 @@ function createGrid(gridHeight, gridWidth) {
 			sketchColumn.appendChild(sketchSquare);
 		}
 	}
+	setMode(mode);
 }
 
 function randomizeColor() {
-	grid.forEach((square) => {
-		var letters = "0123456789ABCDEF";
-		var color = "#";
-		for (var i = 0; i < 6; i++) {
-			color += letters[Math.floor(Math.random() * 16)];
-		}
-		square.style.backgroundColor = color;
-	});
+	var letters = "0123456789ABCDEF";
+	var color = "#";
+	for (var i = 0; i < 6; i++) {
+		color += letters[Math.floor(Math.random() * 16)];
+	}
+	return color;
 }
 
 function refreshGrid() {
