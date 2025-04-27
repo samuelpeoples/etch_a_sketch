@@ -28,7 +28,7 @@ html body {
 	opacity: 1;
 }
 
-#selectModeBtn, 
+.selectModeBtn, 
 .dropButton,
 .resetButton {
 	background-color: #3498db;
@@ -40,14 +40,14 @@ html body {
 	width: 120px;
 }
 
-#selectModeBtn:hover,
-#selectModeBtn:focus,
+.selectModeBtn:hover,
+.selectModeBtn:focus,
 .dropButton:hover,
 .dropButton:focus {
 	background-color: #2980b9;
 }
 
-#modeDropdown {
+.modeDropdown {
 	position: relative;
 	display: inline-block;
 }

@@ -22,8 +22,15 @@ resetButton.addEventListener("click", () => {
 	refreshGrid();
 });
 
-function showModes(){
-	document.getElementById('modeSelect').classList.toggle("show");
+const dropDowns = document.querySelectorAll('.modeDropdown');
+
+dropDowns.forEach(element => {
+	element.addEventListener('click', () =>{
+		showModes(element);
+	})
+});
+function showModes(dropdown){
+	dropdown.querySelector('.modeSelect').classList.toggle("show");
 	let dropdownOpts = document.querySelectorAll(".dropButton");
 	dropdownOpts.forEach(element => {
 		element.classList.toggle("show")
@@ -31,11 +38,11 @@ function showModes(){
 }
 
 window.onclick = function(event){
-	if(!event.target.matches('#selectModeBtn')){
-		let dropdownOpts = document.getElementById("modeSelect").querySelectorAll(".dropButton");
+	if(!event.target.matches('.selectModeBtn')){
+		let dropdownOpts = document.querySelector(".modeSelect").querySelectorAll(".dropButton");
 		console.log(dropdownOpts)
-		if (document.getElementById('modeSelect').classList.contains('show')){
-			document.getElementById('modeSelect').classList.remove('show');
+		if (document.querySelector('.modeSelect').classList.contains('show')){
+			document.querySelector('.modeSelect').classList.remove('show');
 		}
 		for (let i = 0; i < dropdownOpts.length; i++){
 			let openDropdown = dropdownOpts[i];
