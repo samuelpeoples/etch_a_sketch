@@ -8,10 +8,16 @@
     <title>Document</title>
 </head>
 <body>
-    <button id="normalButton">Normal Mode</button>
-    <button id="shadeButton">Shade Mode</button>
-    <button id="colourButton">Colour Mode</button>
-    <button id="reset" class="button">Reset?</button>
+    <div id="modeDropdown">
+        <button onclick="showModes()" id="selectModeBtn" type="button">Select Mode</button>
+        <div id="modeSelect" class="modeSelect">
+            <button class="dropButton" id="normalButton">Normal Mode</button>
+            <button class="dropButton" id="shadeButton">Shade Mode</button>
+            <button class="dropButton" id="colourButton">Colour Mode</button>
+        </div>
+    </div>
+
+    <button id="reset" class="resetButton">Reset?</button>
     <div id="sketchContainer">
         
     </div>

@@ -22,6 +22,30 @@ resetButton.addEventListener("click", () => {
 	refreshGrid();
 });
 
+function showModes(){
+	document.getElementById('modeSelect').classList.toggle("show");
+	let dropdownOpts = document.querySelectorAll(".dropButton");
+	dropdownOpts.forEach(element => {
+		element.classList.toggle("show")
+	});
+}
+
+window.onclick = function(event){
+	if(!event.target.matches('#selectModeBtn')){
+		let dropdownOpts = document.getElementById("modeSelect").querySelectorAll(".dropButton");
+		console.log(dropdownOpts)
+		if (document.getElementById('modeSelect').classList.contains('show')){
+			document.getElementById('modeSelect').classList.remove('show');
+		}
+		for (let i = 0; i < dropdownOpts.length; i++){
+			let openDropdown = dropdownOpts[i];
+			if (openDropdown.classList.contains('show')){
+				openDropdown.classList.remove('show');
+			}
+		}
+	}
+}
+
 function setMode(mode) {
 	const grid = document.querySelectorAll("#square");
 	if (mode == 0) {
@@ -51,8 +75,8 @@ function setMode(mode) {
 				square.style.backgroundColor = randomizeColor();
 			});
 		});
-	}
-}
+	};
+};
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -75,10 +99,10 @@ function createGrid(gridHeight, gridWidth) {
 			sketchSquare.classList.add("sketchSquare");
 			sketchSquare.id = "square";
 			sketchColumn.appendChild(sketchSquare);
-		}
-	}
+		};
+	};
 	setMode(mode);
-}
+};
 
 function randomizeColor() {
 	var letters = "0123456789ABCDEF";
@@ -87,18 +111,18 @@ function randomizeColor() {
 		color += letters[Math.floor(Math.random() * 16)];
 	}
 	return color;
-}
+};
 
 function refreshGrid() {
-	let gridHeight = prompt("How High do you want this grid?");
+	let gridHeight = prompt("How High do you want this grid?", 20);
 	while (gridHeight > 100) {
-		gridHeight = prompt("How High do you want this grid?");
+		gridHeight = prompt("Too High! How High do you want this grid? (max 100)", 20);
 	}
-	let gridWidth = prompt("How Wide do you want this grid?");
+	let gridWidth = prompt("How Wide do you want this grid?", 20);
 	while (gridWidth > 100 && typeof gridWidth !== Number) {
-		gridWidth = prompt("How Wide do you want this grid?");
+		gridWidth = prompt("Too Wide! How Wide do you want this grid? (max 100)", 20);
 	}
 
 	sketchContainer.replaceChildren();
 	createGrid(gridHeight, gridWidth);
-}
+};

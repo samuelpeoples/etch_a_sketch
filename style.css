@@ -1,28 +1,65 @@
-html body{
-    box-sizing: border-box;
+html body {
+	box-sizing: border-box;
 }
-#sketchContainer{
-    display: flexbox;
-    border: .2em solid black;
-    flex: auto;
-    width: fit-content;
-    background-color: black;
-}
-
-.button{
-    margin: 1em 0em;
+#sketchContainer {
+	display: flexbox;
+	border: 0.2em solid black;
+	flex: auto;
+	width: fit-content;
+	background-color: black;
+	margin: 10px;
 }
 
-.sketchRow{
-    width: fit-content;
+.button {
+	margin: 1em 0em;
 }
-.sketchColumn{
-    display: flex;
-    flex-direction: row;
+
+.sketchRow {
+	width: fit-content;
 }
-.sketchSquare{
-    padding: .7em;
-    border: .1em dotted black;
-    background-color:white;
-    opacity: 1;
+.sketchColumn {
+	display: flex;
+	flex-direction: row;
+}
+.sketchSquare {
+	padding: 0.7em;
+	border: 0.1em dotted black;
+	background-color: white;
+	opacity: 1;
+}
+
+#selectModeBtn, 
+.dropButton,
+.resetButton {
+	background-color: #3498db;
+	color: white;
+	padding: 8px;
+	font-size: 1rem;
+	border: none;
+	cursor: pointer;
+	width: 120px;
+}
+
+#selectModeBtn:hover,
+#selectModeBtn:focus,
+.dropButton:hover,
+.dropButton:focus {
+	background-color: #2980b9;
+}
+
+#modeDropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.modeSelect {
+	display: none;
+	position: absolute;
+	/* background-color: #f1f1f1; */
+	min-width: 160px;
+	z-index: 1;
+}
+
+.show {
+	display: block;
 }
